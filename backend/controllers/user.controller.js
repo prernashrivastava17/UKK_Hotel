@@ -24,14 +24,14 @@ exports.login = async (request,response) => {
   try {
       const params = {
           email: request.body.email,
-          password: md5(request.body.password),
+          password: request.body.password,
       };
       console.log(params.email)
       const findUser = await userModel.findOne({ where: params});
       if (findUser == null) {
           return response.status(404).json({
               message: "email or password doesn't match",
-              err: error,
+              //err: error,
           });
       }
       console.log(findUser)
